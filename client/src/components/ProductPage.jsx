@@ -1,15 +1,12 @@
 import React from 'react'
-import {useParams} from "react-router-dom"
-function ProductPage() {
-    const param = useParams();
-    const {slug} = param;
+import { useParams } from 'react-router-dom';
+
+function ProductPage(props) {
+  const param = useParams();
+  const {slug} = param
   return (
-    <div>
-
-      {slug}
-
-    </div>
-  )
+    <div>{slug}</div>
+  );
 }
 
 export default ProductPage

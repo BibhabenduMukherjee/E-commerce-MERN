@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Product from '../components/Product';
 import axios from "axios"
 import { useReducer } from 'react'
 
@@ -46,9 +48,7 @@ function Home() {
   return (
  
          <div className="">
-      <header>
-        <Link className='Brand' href = "/amazon">Amazon</Link>
-      </header>
+      
       <main>
         <h1>Featured Products</h1>
   
@@ -58,25 +58,13 @@ function Home() {
 
            {loading ? (<div>loading...</div>)
            : error ? (<>{error}</>) : (<>
-            {products.map((product)=>(
-            <div className='product' key = {product.slug}>
-            <Link to={`product/${product.slug}`}>
-            <img src= {product.image} alt={product.name}/>
-            </Link>
-          
-              <div className='pro-info'>
-              <a href={`/product/${product.slug}`}>
-              <p>{product.name}</p>
-              </a>
-             <Link to= {`/product/${product.slug}`}>
-             <p>{product.price}</p>
-             </Link>
-            
-              <button>Add To Cart</button>
-              </div>
-             
-            </div>
-          ))}
+            <Row>
+            {products.map((product) => (
+              <Col key={product.slug} sm={6} md={4} lg={3} className="mb-3">
+                <Product product={product}></Product>
+              </Col>
+            ))}
+          </Row>
 
            </>)
             
